@@ -105,3 +105,4 @@ int main()
 ~~~
 ![image](https://github.com/user-attachments/assets/cfce5d36-fc08-4a9f-b608-0a088ed02088)
 
+code 2 
