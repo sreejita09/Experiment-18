@@ -1,4 +1,4 @@
-# Experiment 17
+# Experiment 18
 # Aim
 to implement stack implementation using array
 
