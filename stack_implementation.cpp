@@ -1,84 +1,92 @@
 // Sreejita Bhardwaj
-// Entc
-// Exp 17: stack implementation using array
+// Entc b
+// Exp 18: stack implementation using array
 
 #include <iostream>
 using namespace std;
+#define size 5
+#define error -9999
 
-const int n = 100;
-int stack[n], top = -1;
+class stack 
+{
+    int top, ar[size];
 
-void push(int val) {
-    if (top >= n - 1) {
-        cout << "Stack overflow" << endl;
-    } else {
-        stack[++top] = val;
+public:
+    stack() 
+    {
+        top = -1;
+        ar[0]=0;
+    }
+    void push(int);
+    int pop();
+    int peak();
+    void disp();
+};
+
+void stack::push(int num) 
+{
+    if (top == size - 1) 
+    {
+        cout << "Stack overflow: stack is full" << endl;
+        return;
+    } else 
+    {
+        ar[++top] = num;
     }
 }
 
-void pop() {
-    if (top < 0) {
-        cout << "Stack underflow" << endl;
-    } else {
-        cout << "The popped element is: " << stack[top--] << endl;
+int stack::pop() {
+    int val;
+    if (top == -1) 
+    {  // Corrected this line
+        cout << "Stack underflow: stack is empty" << endl;
+        return error;
+    } else 
+    {
+        val = ar[top--];
+        return val;
     }
 }
 
-void display() {
-    if (top >= 0) {
-        cout << "Stack elements are: ";
-        for (int i = top; i >= 0; i--) {
-            cout << stack[i] << " ";
+int stack::peak() 
+{
+    if (top == -1) 
+    {
+        cout << "Stack underflow: stack is empty" << endl;
+        return error;
+    } else 
+    {
+        return ar[top];
+    }
+}
+
+void stack::disp() 
+{
+    if (top == -1) 
+    {
+        cout << "Stack underflow: stack is empty" << endl;
+        return;
+    } else 
+    {
+        for (int i = 0; i <= top; i++) 
+        {
+            cout << ar[i] << " ";
         }
         cout << endl;
-    } else {
-        cout << "Stack is empty" << endl;
     }
 }
 
-int main()
+int main() 
 {
-    int ch,val;
-    cout<<"1) Push in stack"<<endl;
-    cout<<"2) Pop from stack"<<endl;
-    cout<<"3) display stack"<<endl;
-    cout<<"4) exit"<<endl;
-
-    do
-    {
-        cout<<"enter choice: "<<endl;
-        cin>>ch;
-        switch(ch)
-        {
-            case 1:
-            {
-                cout<<"enter the value that has to be pushed"<<endl;
-                cin>>val;
-                push(val);
-                break;
-            }
-
-            case 2:
-            {
-                pop();
-                break;
-            }
-            case 3:
-            {
-                display();
-                break;
-            }
-            case 4:
-            {
-                cout<<"exit"<<endl;
-                break;
-            }
-            default:
-            {
-                cout<<"Invalid choice"<<endl;
-            }
-        }
-    }
-    while (ch!=4);
+    stack s1;
+    s1.push(10);
+    s1.push(7);
+    s1.push(4);
+    int val = s1.pop();
+    cout << "Popped value: " << val << endl;
+    int top = s1.peak();
+    cout << "Top value: " << top << endl;
+    cout << "Stack contents: ";
+    s1.disp();
     return 0;
 }
